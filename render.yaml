@@ -3,5 +3,5 @@ services:
     name: my-tailscale-app
     env: docker
     dockerfile: Dockerfile
-    envVars:
-      healthCheckPath: /health
+    #envVars:
+      #healthCheckPath: /health

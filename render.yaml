@@ -4,8 +4,4 @@ services:
     env: docker
     dockerfile: Dockerfile
     envVars:
-      - key: TS_AUTHKEY
-        value: tskey-auth-kxh7KRZcW511CNTRL-gQejyfGZMnKLgU7vawKqnKCpSJXfpEXD
-      - key: RENDER_SERVICE_NAME
-        value: my-tailscale-app
-    healthCheckPath: /health
+      healthCheckPath: /health

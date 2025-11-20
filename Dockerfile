@@ -10,7 +10,7 @@ RUN apk update && apk add --no-cache \
 
 # Download and install Tailscale with proper paths
 RUN cd /tmp && \
-    curl -fsSL -o tailscale.tgz https://pkgs.tailscale.com/stable/tailscale_1.58.2_amd64.tgz && \
+    curl -fsSL -o tailscale.tgz https://pkgs.tailscale.com/stable/tailscale_1.90.8_amd64.tgz && \
     tar xzf tailscale.tgz && \
     mkdir -p /usr/local/bin /usr/local/sbin && \
     mv tailscale_*/tailscale /usr/local/bin/ && \

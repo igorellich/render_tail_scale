@@ -9,7 +9,7 @@ mkdir -p /var/lib/tailscale
 # Start tailscaled in background
 echo "Starting tailscaled..."
 tailscaled --tun=userspace-networking --socket=/var/run/tailscale/tailscaled.sock &
-sleep 20
+sleep 60
 
 # Bring up Tailscale
 echo "Starting Tailscale with auth key..."
@@ -20,7 +20,7 @@ tailscale up \
     --accept-dns=false
 
 echo "Tailscale started successfully!"
-
+sleep 10
 # Get Tailscale IP address
 TAILSCALE_IP=$(tailscale ip -4)
 echo "Tailscale IP: ${TAILSCALE_IP}"

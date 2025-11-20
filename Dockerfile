@@ -1,31 +1,27 @@
 FROM node:18-alpine
 
-# Install dependencies in single layer
-RUN apk add --no-cache \
+# Install dependencies
+RUN apk update && apk add --no-cache \
     curl \
     iptables \
     ip6tables \
-    net-tools \
-    bash
+    net-tools
 
-# Download and install Tailscale manually
-RUN curl -fsSL -o /tmp/tailscale.tgz https://pkgs.tailscale.com/stable/tailscale_1.58.2_amd64.tgz && \
-    tar xzf /tmp/tailscale.tgz -C /tmp && \
-    mkdir -p /usr/local/bin /usr/local/sbin && \
-    cp /tmp/tailscale_*/tailscale /usr/local/bin/ && \
-    cp /tmp/tailscale_*/tailscaled /usr/local/sbin/ && \
-    rm -rf /tmp/tailscale*
+# Install Tailscale
+RUN curl -fsSL https://tailscale.com/install.sh | sh
 
-# Create necessary directories
-RUN mkdir -p /var/run/tailscale /var/lib/tailscale /var/cache/tailscale
+WORKDIR /app
 
-# Copy your application code
+# Copy package files
 COPY package*.json ./
-RUN npm install
 
+# Install with retry logic and cache cleaning
+RUN npm cache verify && \
+    (npm install || (sleep 5 && npm install))
+
+# Copy application code
 COPY . .
 
-# Copy the entrypoint script
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 

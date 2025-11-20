@@ -5,7 +5,7 @@ const app = express();
 // Get Tailscale IP (optional)
 const { execSync } = require('child_process');
 let tailscaleIP = '';
-
+console.log(`!!!!!!!!!!!!!!!!!`);
 // try {
 //   tailscaleIP = execSync('tailscale ip -4').toString().trim();
 //   console.log(`Tailscale IP: ${tailscaleIP}`);

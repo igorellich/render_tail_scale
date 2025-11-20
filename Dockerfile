@@ -1,14 +1,14 @@
 # Use your application's base image
 FROM node:18-alpine
 
-# Install Tailscale dependencies
-RUN apk add --no-cache \
+# Install curl and other dependencies FIRST
+RUN apk update && apk add --no-cache \
     curl \
     iptables \
     ip6tables \
     net-tools
 
-# Install Tailscale
+# Now install Tailscale
 RUN curl -fsSL https://tailscale.com/install.sh | sh
 
 # Copy your application code

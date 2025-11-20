@@ -9,8 +9,7 @@ mkdir -p /var/lib/tailscale
 # Start tailscaled in background
 echo "Starting tailscaled..."
 tailscaled --tun=userspace-networking --socket=/var/run/tailscale/tailscaled.sock &
-sleep 60
-
+sleep 5
 # Bring up Tailscale
 echo "Starting Tailscale with auth key..."
 tailscale up \
@@ -27,4 +26,4 @@ echo "Tailscale IP: ${TAILSCALE_IP}"
 
 # Start your main application
 echo "Starting main application..."
-exec "$@"
+exec npm start

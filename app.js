@@ -6,12 +6,12 @@ const app = express();
 const { execSync } = require('child_process');
 let tailscaleIP = '';
 
-try {
-  tailscaleIP = execSync('tailscale ip -4').toString().trim();
-  console.log(`Tailscale IP: ${tailscaleIP}`);
-} catch (error) {
-  console.log('Tailscale IP not available');
-}
+// try {
+//   tailscaleIP = execSync('tailscale ip -4').toString().trim();
+//   console.log(`Tailscale IP: ${tailscaleIP}`);
+// } catch (error) {
+//   console.log('Tailscale IP not available');
+// }
 
 app.get('/', (req, res) => {
   res.json({
